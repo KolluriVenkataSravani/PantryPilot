@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f7f2">
+    <title>Pantry Pilot</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Pantry Pilot home"><span class="brand-icon">P</span> pantry pilot</a>
+        <span class="local-badge"><span></span> YOUR HOME PANTRY</span>
+      </header>
+
+      <section class="intro">
+        <p class="eyebrow">A LITTLE LESS WASTE, EVERY DAY</p>
+        <h1>Know what's<br><em>in your pantry.</em></h1>
+        <p class="intro-copy">Keep track of what you have and use it before it goes to waste.</p>
+      </section>
+
+      <section class="stats" aria-label="Pantry overview">
+        <article class="stat-card"><span class="stat-icon">▤</span><div><strong id="total-count">—</strong><span>items on hand</span></div></article>
+        <article class="stat-card warning"><span class="stat-icon">◷</span><div><strong id="expiring-count">—</strong><span>use within 7 days</span></div></article>
+        <article class="stat-card alert"><span class="stat-icon">!</span><div><strong id="expired-count">—</strong><span>past their date</span></div></article>
+      </section>
+
+      <section class="content-grid">
+        <section class="panel inventory">
+          <div class="section-heading">
+            <div><p class="eyebrow">YOUR COLLECTION</p><h2>Pantry items <span id="item-total">0</span></h2></div>
+            <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Find an item..." aria-label="Search pantry items"></label>
+          </div>
+          <div class="filters" role="group" aria-label="Filter pantry items">
+            <button class="filter active" data-status="" type="button">All items</button>
+            <button class="filter" data-status="expiring" type="button">Use soon</button>
+            <button class="filter" data-status="expired" type="button">Expired</button>
+            <button class="filter" data-status="fresh" type="button">Fresh</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>ITEM</th><th>QUANTITY</th><th>BEST BEFORE</th><th></th></tr></thead>
+              <tbody id="items"></tbody>
+            </table>
+            <div id="empty-state" class="empty-state" hidden>
+              <span>✳</span><h3>Your pantry is ready for a fresh start.</h3>
+              <p>Add your first item to keep an eye on it.</p>
+            </div>
+          </div>
+          <p id="error-message" class="error-message" role="alert" hidden></p>
+        </section>
+
+        <aside class="panel add-panel">
+          <p class="eyebrow">MAKE IT COUNT</p>
+          <div class="form-heading"><h2 id="form-title">Add to your<br>pantry<span class="period">.</span></h2><button id="cancel-edit" class="cancel-button" type="button" hidden>Cancel</button></div>
+          <p class="form-intro">A quick note now can save a good meal later.</p>
+          <form id="item-form">
+            <label for="name">Item name <span>*</span></label>
+            <input id="name" name="name" placeholder="e.g. Rolled oats" maxlength="120" required>
+            <div class="field-row">
+              <div><label for="quantity">Quantity <span>*</span></label><input id="quantity" name="quantity" type="number" min="0.01" step="any" value="1" required></div>
+              <div><label for="unit">Unit</label><input id="unit" name="unit" value="item" maxlength="30" required></div>
+            </div>
+            <label for="category">Category</label>
+            <select id="category" name="category">
+              <option>Produce</option><option>Dairy</option><option>Meat &amp; fish</option>
+              <option>Grains &amp; pasta</option><option>Canned goods</option><option>Snacks</option><option selected>Other</option>
+            </select>
+            <label for="expires_on">Best before</label>
+            <input id="expires_on" name="expires_on" type="date">
+            <label for="notes">Notes <span class="optional">OPTIONAL</span></label>
+            <input id="notes" name="notes" placeholder="Where it's stored, recipe idea..." maxlength="1000">
+            <button class="submit-button" type="submit">Add pantry item <span aria-hidden="true">↗</span></button>
+            <p id="form-error" class="error-message" role="alert" hidden></p>
+          </form>
+        </aside>
+      </section>
+      <footer><span>PANTRY PILOT</span><span>Make good food go further.</span></footer>
+    </main>
+  </body>
+</html>
